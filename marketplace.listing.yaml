@@ -7,15 +7,15 @@ canonical_offer_url: pending_verified_offer_url
 title: Agentic Architecture Field Guide
 short_description: Design local-first and cloud-ready agent systems with clear runtime choices, trust boundaries and deployment paths.
 buyer_job: make_a_defensible_agent_stack_decision
-includes: [field_guide, decision_matrix, reference_architectures, security_boundaries, local_audit]
+includes: [field_guide, decision_matrix, reference_architectures, security_boundaries, local_audit, offline_client_delivery_workbench, client_delivery_templates, guided_adaptation_lab, deterministic_support_reference, release_evidence_checker]
 excludes: [managed_hosting, vendor_endorsement, legal_or_security_certification]
 price_state: free_public_guide_paid_pack_decision_required
 license: MIT_for_repository
-support_url: https://github.com/frankxai/agentic-architecture-field-guide/issues
+support_url: https://github.com/AI-Architect-Studio/agentic-architecture-field-guide/issues
 channels:
   - id: github
     state: existing_public_repository
-    url: https://github.com/frankxai/agentic-architecture-field-guide
+    url: https://github.com/AI-Architect-Studio/agentic-architecture-field-guide
   - id: gumroad
     state: not_submitted
   - id: vercel_templates
@@ -25,3 +25,4 @@ maintenance:
   last_checked: "2026-09-03"
   next_review: "2026-10-03"
   owner: FrankX
+

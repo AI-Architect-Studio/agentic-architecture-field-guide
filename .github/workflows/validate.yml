@@ -25,6 +25,7 @@ jobs:
         with:
           node-version: '22'
       - name: Test the local proof kit
-        run: node --test scripts/architecture-review.test.mjs
+        run: node --test scripts/architecture-review.test.mjs scripts/release-evidence.test.mjs scripts/support-agent-reference.test.mjs
       - name: Generate the illustrative review packet
         run: node scripts/architecture-review.mjs examples/consultant-brief/decision.json
+

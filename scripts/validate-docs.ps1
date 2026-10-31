@@ -2,6 +2,12 @@ $ErrorActionPreference = "Stop"
 $root = Split-Path $PSScriptRoot -Parent
 $required = @(
   "README.md",
+  "START-HERE.md",
+  "workbench/index.html",
+  "packs/client-delivery/README.md",
+  "docs/labs/client-delivery-lab.md",
+  "examples/support-agent-reference/README.md",
+  "scripts/support-agent-reference.test.mjs",
   "docs/runtime-decision-matrix.md",
   "docs/reference-architectures.md",
   "docs/founder-operating-models.md",
@@ -40,3 +46,4 @@ foreach ($file in $markdown) {
 }
 
 Write-Host "Docs validation passed."
+
