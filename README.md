@@ -16,7 +16,7 @@
   <a href="docs/sources.md">Sources</a>
 </p>
 
-[![Validate](https://github.com/frankxai/agentic-architecture-field-guide/actions/workflows/validate.yml/badge.svg)](https://github.com/frankxai/agentic-architecture-field-guide/actions/workflows/validate.yml)
+[![Validate](https://github.com/AI-Architect-Studio/agentic-architecture-field-guide/actions/workflows/validate.yml/badge.svg)](https://github.com/AI-Architect-Studio/agentic-architecture-field-guide/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Architecture](https://img.shields.io/badge/Architecture-Agent%20OS-0b7285)](docs/runtime-decision-matrix.md)
 [![Local Audit](https://img.shields.io/badge/Local%20Audit-PowerShell-2f9e44)](scripts/agent-os-audit.ps1)
@@ -37,6 +37,17 @@ It is intentionally vendor-neutral. Hermes Agent, OpenClaw, DeepAgents, Claude C
 
 ## Start Here
 
+### Client delivery kit
+
+Open [START-HERE.md](START-HERE.md) for the complete local kit. It combines an
+[offline delivery workbench](workbench/index.html), a [runnable support-agent
+reference](examples/support-agent-reference/README.md), [editable client
+templates](packs/client-delivery/README.md) and a [guided adaptation
+lab](docs/labs/client-delivery-lab.md). The workbench needs only a browser; the
+reference and tests use Node.js 22 or later. The complete source is MIT licensed.
+The reference uses deterministic retrieval over synthetic material and makes no
+language-model, deployment or client-acceptance claim.
+
 | If you have... | Read |
 | --- | --- |
 | 5 minutes | [Runtime decision matrix](docs/runtime-decision-matrix.md) |
@@ -49,7 +60,7 @@ It is intentionally vendor-neutral. Hermes Agent, OpenClaw, DeepAgents, Claude C
 | A security concern | [Security and trust boundaries](docs/security-boundaries.md) |
 
 ```powershell
-git clone https://github.com/frankxai/agentic-architecture-field-guide.git
+git clone https://github.com/AI-Architect-Studio/agentic-architecture-field-guide.git
 cd agentic-architecture-field-guide
 powershell -ExecutionPolicy Bypass -File scripts/validate-docs.ps1
 powershell -ExecutionPolicy Bypass -File scripts/agent-os-audit.ps1

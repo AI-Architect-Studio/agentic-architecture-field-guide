@@ -8,6 +8,7 @@ The [decision-to-release worksheet](worksheets/decision-to-release.md) and [comp
 
 ## Editions
 
+- Client Delivery Kit: free MIT browser workbench, editable client templates, guided lab, deterministic support reference and evidence checker. Follow [START-HERE.md](../START-HERE.md). This source package is usable locally; it establishes no hosted service or commercial fulfillment.
 - Public guide: decision matrix, reference architectures, trust boundaries and local audit.
 - Professional pack: editable C4 diagrams, ADR library, threat-model worksheet, runtime scorecard, cost/latency workbook, eval plan and deployment checklists.
 - Team license: workshop facilitation, review rubric, architecture evidence packet and versioned updates.
@@ -27,3 +28,4 @@ JSON, trust boundaries, failure plan, cost model, export and rollback remain MIT
 It is a free proof contribution. The agent workflow is specified, not deployed;
 independent runtime review and one real external architecture result remain open.
 Do not infer that the professional pack is ready for sale from this example.
+

@@ -3,7 +3,7 @@ product_id: product_agentic_architecture_field_guide
 sku_id: sku_agentic_architecture_field_guide_v1
 name: Agentic Architecture Field Guide
 brand_id: brand_starlight_intelligence
-repository: frankxai/agentic-architecture-field-guide
+repository: AI-Architect-Studio/agentic-architecture-field-guide
 status: release_candidate
 format: open_guide_and_professional_pack
 buyer:
@@ -23,3 +23,4 @@ channels: [github, owned_storefront, gumroad, vercel_templates]
 maintenance:
   cadence: monthly_source_freshness_and_on_material_vendor_change
 stop_rule: do_not_sell_a_professional_pack_until_examples_and_audit_outputs_are_independently_verified
+
