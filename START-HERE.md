@@ -54,7 +54,7 @@ Use this bounded demonstration before adapting the kit to a real engagement. It 
    - `direct_forbidden_tool-1`, which the runtime denied with `tool_not_allowed`;
    - the unknown USD cost, which remains unknown rather than becoming zero.
 
-3. Export one dossier from `workbench/index.html` as JSON and Markdown. Close the page, reopen it and import the JSON. Confirm that the exported `project.name`, `project.client`, `project.owner`, `project.job`, `architecture.decision`, `evidence.refs` and `operations.acceptanceOwner` survive the round trip.
+3. Export one dossier from `workbench/index.html` as JSON and Markdown. Close the page, reopen it and import the JSON. Confirm that the exported `project.name`, `project.client`, `project.owner`, `project.job`, `architecture.decision`, every populated `evidence[].reference` and `operations.acceptanceOwner` survive the round trip.
 
 4. Hand the recipient the generated trial directory, both dossier exports, the receipt below and the exact repository revision. The recipient passes the demonstration only when they can locate the retained failure and retry, explain the blocked release decision and verify every receipt reference without access to the original chat.
 
