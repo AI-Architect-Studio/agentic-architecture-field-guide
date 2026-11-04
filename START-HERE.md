@@ -36,23 +36,54 @@ Commercial prices, live deployment, actual client results and service guarantees
 
 Use this bounded demonstration before adapting the kit to a real engagement. It proves that the recipient can inspect a local run, see a retained failure and reopen the handover without relying on the original chat. It does not prove live-model quality, deployment readiness or customer acceptance.
 
-1. Run the deterministic reference and evaluator:
+1. Run the deterministic reference and save the evaluator report:
 
    ```sh
    node examples/support-agent-reference/run.mjs --out-dir demo-trial-001
-   node scripts/release-evidence.mjs demo-trial-001/policy.json demo-trial-001/runs.json --markdown
+   set +e
+   node scripts/release-evidence.mjs demo-trial-001/policy.json demo-trial-001/runs.json --markdown > demo-trial-001/evaluation.md
+   status=$?
+   set -e
+   test "$status" -eq 2
    ```
 
-   The evaluator must exit **2**. A zero exit would hide the intended blocked gates; exit **1** would mean the evidence input is invalid.
+   The evaluator must exit **2**. A zero exit would hide the intended blocked gates; exit **1** would mean the evidence input is invalid. Preserve `evaluation.md` with the trial.
 
 2. Show the receiving engineer all three boundaries:
-   - the timed-out `tool_timeout` attempt and its preserved retry;
-   - the forbidden-tool attempt that the runtime denied;
-   - the unknown total cost, which remains unknown rather than becoming zero.
+   - `tool_timeout-1` and its preserved retry `tool_timeout-2`;
+   - `direct_forbidden_tool-1`, which the runtime denied with `tool_not_allowed`;
+   - the unknown USD cost, which remains unknown rather than becoming zero.
 
-3. Export one dossier from `workbench/index.html` as JSON and Markdown. Close the page, reopen it and import the JSON. Confirm that the project identifier, decision, evidence references, handover owner and next action survive the round trip.
+3. Export one dossier from `workbench/index.html` as JSON and Markdown. Close the page, reopen it and import the JSON. Confirm that the exported `project.name`, `project.client`, `project.owner`, `project.job`, `architecture.decision`, `evidence.refs` and `operations.acceptanceOwner` survive the round trip.
 
-4. Hand the recipient the generated trial directory, both exports and the exact repository revision. The recipient passes the demonstration only when they can identify the blocked release decision, locate the retained failure and name the next accountable action without access to the original chat.
+4. Hand the recipient the generated trial directory, both dossier exports, the receipt below and the exact repository revision. The recipient passes the demonstration only when they can locate the retained failure and retry, explain the blocked release decision and verify every receipt reference without access to the original chat.
 
-Record the demonstration as **accepted**, **held** or **rejected**, with the reviewer, observed revision and time. A prepared dossier or green unit test is not an accepted handover.
+Copy and complete this receipt outside the public repository:
 
+```yaml
+verdict: accepted | held | rejected
+reviewer: <name or accountable identity>
+observed_at_utc: <RFC 3339 timestamp>
+source_revision: <full commit SHA>
+dossier_json:
+  file: <path>
+  sha256: <digest>
+dossier_markdown:
+  file: <path>
+  sha256: <digest>
+evaluator_report:
+  file: demo-trial-001/evaluation.md
+  sha256: <digest>
+  exit_code: 2
+retained_failure:
+  failed_attempt: tool_timeout-1
+  retry_attempt: tool_timeout-2
+  evidence_ref: <file and JSON path or report section>
+release_decision:
+  status: held
+  evidence_ref: <report section>
+next_action: <one bounded action>
+owner: <accountable identity>
+```
+
+A prepared dossier or green unit test is not an accepted handover. Keep confidential client material and completed private receipts outside this public repository.
