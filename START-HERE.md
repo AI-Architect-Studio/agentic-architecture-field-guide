@@ -14,6 +14,8 @@ The workbench records decisions and declarations. Its checklist does not execute
 
 Start with [the guided lab](docs/labs/client-delivery-lab.md). Use the [client delivery pack](packs/client-delivery/README.md) for reusable templates and the worked example. The completion condition is another engineer being able to understand the scope, inspect the evidence and take over the next action.
 
+Use the [ChatGPT and Codex lab](docs/labs/chatgpt-codex-delivery.md) to hand one test-only change from a brief to an independently reviewable packet.
+
 ## Run the reference
 
 Install Node.js 22 or later, then follow [the runnable support-agent reference](examples/support-agent-reference/README.md). It executes a deterministic retrieval baseline against synthetic material and derives assertions from observed outputs. It does not call a language model or prove how one will behave.
