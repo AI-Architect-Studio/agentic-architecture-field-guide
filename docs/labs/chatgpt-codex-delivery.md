@@ -42,6 +42,26 @@ Ask the reviewer to return `accepted`, `held` or `rejected` for the **proposed t
 
 > Continue from revision or diff **[reference]**. Inspect **[receipt paths]** and rerun **[command]**. The new test outcome is **[observed status or not run]**. The fixture gate is **[observed status or unknown]**. The remaining review item is **[item]**. Next authorized action is **[action]**.
 
+## Worked handoff from a local run
+
+**Decision.** Add one test. The existing validator rejects whitespace-only input before it records the question or calls a tool. Leave the implementation unchanged.
+
+**Source.** The synthetic checkout used base commit `0daaa5a583648f455d2fb4acf5df1a62785e4a6f`. Append this to `scripts/support-agent-reference.test.mjs` to reproduce the change:
+
+```js
+test('rejects whitespace-only questions before retrieval', async () => {
+  const agent = make();
+  await assert.rejects(agent.answer('   '), /A bounded question is required/);
+  assert.deepEqual(agent.getTrace(), []);
+});
+```
+
+**Observed.** The support reference suite passed 11 tests on the base, then 12 after this test-only change. The synthetic reference produced 11 attempts across 10 cases. The evaluator exited 2 and reported `DECLARED_GATES_FAIL`. Attempt `tool_timeout-1` and retry `tool_timeout-2` were both retained. Total cost remained unknown.
+
+**Review.** This is the maker's execution record. Independent acceptance and host invocation were not observed.
+
+> Reproduce the single test against the recorded base. Compare the baseline and changed suite results, then inspect the evaluator packet for both timeout attempts. Return a verdict on the test change. Keep the synthetic trial held under its current policy.
+
 ## Install and maintain the companion
 
 This repository defines a one-entry Codex marketplace. From a local checkout that contains the companion files, run these commands with a Codex CLI that supports local marketplaces.
