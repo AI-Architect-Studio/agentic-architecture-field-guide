@@ -10,6 +10,7 @@
 @media(max-width:680px){.hero{grid-template-columns:1fr;gap:12px;padding:28px 0}.sleeve{max-width:400px;width:100%;aspect-ratio:2.4}.sleeve strong{font-size:36px}.evidence{display:block}.source,.source+.source{padding:12px 0;border-left:0}.source+.source{border-top:1px solid var(--line)}header{align-items:flex-start;font-size:.82rem}.hero h1{font-size:58px}.sheet{margin:20px 0}}
 @media print{body{background:white;color:black}.sleeve,header,button,footer{display:none}.hero{padding:8px 0;display:block}.sheet{break-inside:avoid;margin:4px 0;padding:10px}.source p,.hero p,.stamp,.meta{color:black}.hero h1{font-size:34px}.evidence{display:block}}
 </style>
+<noscript><style>#brief{display:none}</style></noscript>
 </head>
 <body>
 <header><span class="brand">AI Architect Studio</span><a href="index.html">Client Delivery Workbench</a></header>
@@ -23,7 +24,10 @@
 <div class="source"><span class="stamp">A · artist note</span><h3>“Master 04 is final.”</h3><p>The artist approves the audio at 15:10. The note names the recording only.</p></div>
 <div class="source"><span class="stamp">B · image log</span><h3>Two cover files</h3><p>The art director marked cover 02 for review. The scheduler still holds cover 01.</p></div>
 <div class="source"><span class="stamp">C · release desk</span><h3>One publishing key</h3><p>The label editor owns the schedule. Drafting and issuing the announcement are separate permissions.</p></div></section>
-<noscript><p>Paper edition: write a first decision using A–C. Then introduce a new condition: the editor approved cover 02, but cover 03 replaced it in the scheduler. Revise the rule, name a fallback, and hand your decision to a second editor.</p></noscript>
+<noscript><section class="sheet"><span class="stamp">Paper edition</span><h2>What goes out at six?</h2>
+<p>1. Using A–C, write the action you would permit, the source that supports it and one unknown. Keep this first answer.</p>
+<details><summary>2. Open the 17:52 update after writing.</summary><p>The editor approved cover 02 at 17:49. Cover 03 then replaced it in the queue. Revise the release rule and name the person who can clear the hold.</p></details>
+<details><summary>3. Try a different decision.</summary><p>A researcher approved version 7 of a grant budget. A colleague changed a line in version 8. What should the coordinator do before the submission deadline? Write the evidence that could change your recommendation. Give all three answers to a reviewer.</p></details><p>For a complete printed copy, open both disclosures before printing.</p></section></noscript>
 <section class="sheet" id="brief"><span class="stamp">First decision</span><h2>What goes out at six?</h2>
 <form id="attempt"><fieldset><legend>Choose the scope you would give the assistant.</legend>
 <label class="choice"><input type="radio" name="scope" value="publish" required> Publish the queued assets at 18:00.</label>
@@ -60,7 +64,9 @@ function capture(formId, fieldId, next, save) {
   byId(formId).addEventListener('submit', event => {
     event.preventDefault();
     const field = byId(fieldId);
-    const value = field.value.trim();
+    // Match the workbench text contract. PDF page breaks become word separators.
+    const value = field.value.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/gu, ' ').trim();
+    field.value = value;
     if (!value) {
       field.setCustomValidity('Write a decision before continuing.');
       field.reportValidity();
