@@ -56,6 +56,7 @@ language-model, deployment or client-acceptance claim.
 | Agent test results to hand over | [Release evidence kit](docs/release-evidence-kit.md) and [support RAG example](examples/support-rag/README.md) |
 | A machine to audit | [Local install and audit](docs/local-install-audit.md) |
 | A team/fleet to design | [Founder operating models](docs/founder-operating-models.md) |
+| A ChatGPT brief to hand to Codex | [Decision-to-evidence lab](docs/labs/chatgpt-codex-delivery.md) |
 | A decision to document and test | [Free decision-to-release worksheet](docs/worksheets/decision-to-release.md) and [completed example](docs/worksheets/worked-example.md) |
 | A security concern | [Security and trust boundaries](docs/security-boundaries.md) |
 

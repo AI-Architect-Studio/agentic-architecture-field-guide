@@ -1,0 +1,25 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "starlight-field-guide",
+  "version": "0.1.0",
+  "description": "Turn a project brief into a decision, a bounded Codex task and a reviewable evidence packet.",
+  "author": { "name": "Starlight Intelligence" },
+  "homepage": "https://github.com/AI-Architect-Studio/agentic-architecture-field-guide",
+  "repository": "https://github.com/AI-Architect-Studio/agentic-architecture-field-guide",
+  "license": "MIT",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Starlight Field Guide",
+        "shortDescription": "Plan and verify agent work",
+        "longDescription": "Draft a decision and a scope for one repository change. Turn observed checks, gaps and reviewer decisions into an editable handoff.",
+        "developerName": "Starlight Intelligence",
+        "category": "Productivity",
+        "capabilities": ["Interactive"],
+        "logo": "./assets/mark.svg",
+        "composerIcon": "./assets/mark.svg",
+        "defaultPrompt": "Use Starlight Field Guide to turn my brief into a scoped Codex task with testable acceptance criteria."
+      }
+    }
+  }
+}
