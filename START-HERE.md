@@ -10,6 +10,10 @@ Open `workbench/index.html` in a modern desktop browser. It works offline, with 
 
 The workbench records decisions and declarations. Its checklist does not execute tests or establish deployment approval.
 
+## Try a founder or creator decision
+
+Open [The six o’clock release](workbench/release-desk.html) locally. Inspect a fictional label’s release folder, decide what an assistant can do and revise your rule when the queued cover changes. Apply it to a grant submission, download your decision packet, then choose **Import JSON** in the workbench. The exercise requires no account, subscription or provider key.
+
 ## Complete a client delivery
 
 Start with [the guided lab](docs/labs/client-delivery-lab.md). Use the [client delivery pack](packs/client-delivery/README.md) for reusable templates and the worked example. The completion condition is another engineer being able to understand the scope, inspect the evidence and take over the next action.

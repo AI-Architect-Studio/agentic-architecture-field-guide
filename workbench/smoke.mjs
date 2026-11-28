@@ -87,6 +87,29 @@ try {
   await page.emulateMedia({ media: 'print' });
   check(await page.locator('#print-view').isVisible() && !(await page.locator('.shell').isVisible()), 'Print view contains the packet without editor controls');
   await page.pdf({ path: resolve(out, 'workbench-print.pdf'), format: 'A4' });
+  await page.emulateMedia({ media: 'screen' });
+  await page.goto(new URL('./release-desk.html', import.meta.url).href);
+  await page.check('input[value="manual"]');
+  await page.fill('#reason', 'Inspect the asset\f before publishing.');
+  await page.locator('#attempt button').click();
+  check(await page.locator('#reason').isDisabled(), 'Original release decision is frozen');
+  await page.fill('#rule', 'Hold the queued version for the editor.');
+  await page.locator('#revise button').click();
+  await page.fill('#newcase', 'Ask the researcher to approve the changed budget.');
+  await page.locator('#handoff button').click();
+  const releaseDownload = page.waitForEvent('download');
+  await page.click('#download');
+  const releasePath = resolve(out, 'release-desk-project.json');
+  await (await releaseDownload).saveAs(releasePath);
+  await page.goto(url);
+  await page.setInputFiles('#import-file', releasePath);
+  await page.waitForFunction(() => document.getElementById('project-name').value === 'The six o’clock release');
+  await page.click('#tab-handover');
+  const releaseText = await page.locator('#report').innerText();
+  check(releaseText.includes('Hold the queued version') && releaseText.includes('approve the changed budget'),
+    'Release case imports with revised rule and transfer response');
+  check(releaseText.includes('Release approved: No. Runtime verified by this tool: No.'),
+    'Release case preserves the exercise boundary');
   check(errors.length === 0, 'No uncaught browser errors');
   check(remoteRequests.length === 0, 'No remote network requests');
   console.log(JSON.stringify({ passed: checks.length, checks, captures: out }, null, 2));
