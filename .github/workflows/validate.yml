@@ -29,3 +29,31 @@ jobs:
       - name: Generate the illustrative review packet
         run: node scripts/architecture-review.mjs examples/consultant-brief/decision.json
 
+  review-package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: read
+    env:
+      SOURCE_REVISION: ${{ github.event.pull_request.head.sha || github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SOURCE_REVISION }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Rebuild and replay the review package
+        run: |
+          python3 scripts/verify-delivery-pack.py \
+            --source-revision "$SOURCE_REVISION" --out "$RUNNER_TEMP/field-guide-review"
+          cat "$RUNNER_TEMP/field-guide-review/summary.md" >> "$GITHUB_STEP_SUMMARY"
+      - name: Retain the review package and evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: field-guide-review-${{ env.SOURCE_REVISION }}
+          path: ${{ runner.temp }}/field-guide-review/
+          if-no-files-found: error
+          retention-days: 14
+
