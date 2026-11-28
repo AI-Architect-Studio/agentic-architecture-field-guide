@@ -2,6 +2,8 @@
 
 Turn a client brief into an editable architecture and handover package, then inspect the evidence behind a concrete support-agent reference.
 
+For a first review, use the [one-page handoff reference](docs/worksheets/first-handoff.md). It gives the person receiving your packet three decisions to replay.
+
 This edition combines a local browser workbench, reusable delivery templates, a worked client dossier, a guided lab and executable reference code. Everything in this source package is MIT licensed. It is a reference and delivery toolkit; it does not include a hosted AI service, a paid support contract or a certification.
 
 ## Open the workbench

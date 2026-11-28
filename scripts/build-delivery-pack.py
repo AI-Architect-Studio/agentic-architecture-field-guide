@@ -10,8 +10,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ROOT_FILES = ["START-HERE.md", "README.md", "LICENSE", "CONTRIBUTING.md", "product.manifest.yaml", "marketplace.listing.yaml"]
 DIRECTORIES = ["assets", "docs", "examples", "packs", "scripts", "workbench"]
-REQUIRED = ["workbench/index.html", "packs/client-delivery/README.md", "docs/labs/client-delivery-lab.md", "examples/support-agent-reference/README.md", "scripts/release-evidence.mjs"]
+REQUIRED = ["workbench/index.html", "packs/client-delivery/README.md", "docs/labs/client-delivery-lab.md", "docs/worksheets/first-handoff.md", "examples/support-agent-reference/README.md", "scripts/release-evidence.mjs"]
 EXTENSIONS = {".md", ".json", ".yaml", ".yml", ".html", ".css", ".js", ".mjs", ".py", ".ps1", ".svg", ".csv"}
+VERSION = "0.3.0"
 
 
 def build(source_revision, destination):
@@ -46,7 +47,10 @@ def build(source_revision, destination):
     manifest = {
         "schemaVersion": 1,
         "edition": "AI Architect Client Delivery Kit",
-        "version": "0.2.0",
+        "version": VERSION,
+        "editionClass": "open_reference",
+        "reviewState": "review_candidate",
+        "publicationDate": None,
         "sourceRepository": "AI-Architect-Studio/agentic-architecture-field-guide",
         "sourceRevision": source_revision,
         "sourceRevisionProvenance": "Caller-declared; this offline packager does not contact or authenticate GitHub.",
@@ -57,7 +61,7 @@ def build(source_revision, destination):
     }
     members["release-manifest.json"] = (json.dumps(manifest, indent=2) + "\n").encode()
     destination.mkdir(parents=True, exist_ok=True)
-    archive = destination / "AI-Architect-Client-Delivery-Kit-v0.2.0.zip"
+    archive = destination / f"AI-Architect-Client-Delivery-Kit-v{VERSION}.zip"
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
         for name, data in sorted(members.items()):
             info = zipfile.ZipInfo("ai-architect-client-delivery/" + name, (2026, 10, 31, 0, 0, 0))
